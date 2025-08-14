@@ -46,7 +46,8 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.7</version>
+            <version>2.14.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.atlassian.plugins</groupId>
@@ -184,7 +185,7 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.6</version>
+            <version>1.5</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -230,10 +231,9 @@
         <amps.version>8.13.0</amps.version>
         <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
         <osgi.javaconfig.version>0.6.0</osgi.javaconfig.version>
-        <spring.version>5.3.22</spring.version>
+        <spring.version>6.2.8</spring.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 </project>
-
