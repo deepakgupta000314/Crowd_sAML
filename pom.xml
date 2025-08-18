@@ -231,7 +231,7 @@
         <amps.version>8.13.0</amps.version>
         <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
         <osgi.javaconfig.version>0.6.0</osgi.javaconfig.version>
-        <spring.version>6.2.8</spring.version>
+        <spring.version>6.2.10</spring.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
