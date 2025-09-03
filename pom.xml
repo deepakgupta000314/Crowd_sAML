@@ -5,74 +5,48 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.miniorange.jira.crowd</groupId>
-    <artifactId>jira-crowd-sso</artifactId>
-    <version>2.1.0</version>
+    <groupId>com.miniorange.confluence.crowd</groupId>
+    <artifactId>confluence-crowd-sso</artifactId>
+    <version>2.2.2</version>
 
     <organization>
         <name>miniOrange</name>
         <url>https://www.miniorange.com/</url>
     </organization>
 
-    <name>SSO Connector for Jira and Crowd</name>
-    <description>This is the crowd saml redirect plugin for Atlassian Jira</description>
+    <name>SSO Connector for Confluence and Crowd</name>
+    <description>This is the crowd saml redirect plugin for Atlassian Confluence.</description>
     <packaging>atlassian-plugin</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.atlassian.confluence</groupId>
+                <artifactId>confluence-plugins-platform-pom</artifactId>
+                <version>${confluence.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
-            <groupId>com.atlassian.jira</groupId>
-            <artifactId>jira-api</artifactId>
-            <version>${jira.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.atlassian.jira</groupId>
-            <artifactId>jira-core</artifactId>
-            <version>${jira.version}</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>jndi</groupId>
-                    <artifactId>jndi</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.xml.bind</groupId>
-                    <artifactId>jaxb-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.sun.xml.bind</groupId>
-                    <artifactId>jaxb-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.glassfish.jaxb</groupId>
-                    <artifactId>jaxb-runtime</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.opensaml</groupId>
-                    <artifactId>opensaml-saml-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.opensaml</groupId>
-                    <artifactId>opensaml-saml-impl</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>4.10</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.confluence</groupId>
+            <artifactId>confluence</artifactId>
+            <version>${confluence.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.atlassian.plugins</groupId>
             <artifactId>atlassian-plugins-osgi-javaconfig</artifactId>
             <version>${osgi.javaconfig.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.15.4</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -87,21 +61,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>jakarta.ws.rs</groupId>
-            <artifactId>jakarta.ws.rs-api</artifactId>
-            <version>4.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.atlassian.sal</groupId>
-            <artifactId>sal-api</artifactId>
-            <version>7.0.0-jakarta-001</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.atlassian.templaterenderer</groupId>
-            <artifactId>atlassian-template-renderer-api</artifactId>
-            <version>3.0.0</version>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.19.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -111,40 +73,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>2.0.5</version>
+            <groupId>com.atlassian.templaterenderer</groupId>
+            <artifactId>atlassian-template-renderer-api</artifactId>
+            <version>5.0.4</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>6.2.8</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.19.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.19.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.19.0</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.atlassian.annotations</groupId>
@@ -153,38 +85,38 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.atlassian.crowd</groupId>
-            <artifactId>crowd-api</artifactId>
-            <version>6.3.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.atlassian.upm</groupId>
             <artifactId>licensing-api</artifactId>
-            <version>2.21.4</version>
+            <version>1001.3.27</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.atlassian.upm</groupId>
             <artifactId>upm-api</artifactId>
-            <version>2.21</version>
+            <version>1001.3.27</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.miniorange.license</groupId>
-            <artifactId>license-handler</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.atlassian.plugin</groupId>
-            <artifactId>atlassian-spring-scanner-annotation</artifactId>
-            <version>1.2.13</version>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>3.1.0</version> <!-- Or latest -->
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>4.4.15</version>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.18.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -192,12 +124,30 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.14</version>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-codec</groupId>
-                    <artifactId>commons-codec</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.framework</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope><!-- Or match your other Spring libs -->
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.15.4</version>
+            <scope>provided</scope><!-- Compatible with Java 8+ -->
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.crowd</groupId>
+            <artifactId>crowd-api</artifactId>
+            <version>5.0.5</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -209,12 +159,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.14.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.transaction</groupId>
-            <artifactId>jakarta.transaction-api</artifactId>
-            <version>2.0.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -223,56 +167,47 @@
         <plugins>
             <plugin>
                 <groupId>com.atlassian.maven.plugins</groupId>
-                <artifactId>jira-maven-plugin</artifactId>
+                <artifactId>confluence-maven-plugin</artifactId>
                 <version>${amps.version}</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <productVersion>${jira.version}</productVersion>
-                    <productDataVersion>${jira.version}</productDataVersion>
+                    <productVersion>${confluence.version}</productVersion>
+                    <productDataVersion>${confluence.version}</productDataVersion>
                     <enableQuickReload>true</enableQuickReload>
-                    <banningExcludes>
-                        <exclude>org.jsoup:jsoup</exclude>
-                        <exclude>org.apache.commons:commons-lang3</exclude>
-                        <exclude>commons-io:commons-io</exclude>
-                        <exclude>com.fasterxml.jackson.core:jackson-databind</exclude>
-                        <exclude>com.fasterxml.jackson.core:jackson-core</exclude>
-                        <exclude>com.fasterxml.jackson.core:jackson-annotations</exclude>
-                    </banningExcludes>
                     <instructions>
                         <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
 
-                        <!-- Add package to export here -->
                         <Export-Package>
-                            com.miniorange.crowd.jira.api,
+                            com.miniorange.crowd.confluence.api,
                         </Export-Package>
-
-                        <!-- Add package import here -->
                         <Import-Package>
+                            !javax.jmdns,
+                            !com.ibm.uvm.tools,
+                            !com.sun.jdmk.comm,
+                            !javax.jms,
+                            !javax.mail,
+                            !javax.mail.internet,
                             org.springframework.osgi.*;resolution:="optional",
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
-                            com.google.*;resolution:="optional",
-                            com.atlassian.annotations.nullability;resolution:="optional",
-                            sun.nio.ch.*;resolution:="optional",
-                            sun.misc.*;resolution:="optional",
-                            !javax.annotation.meta,
-                            !java.*,
                             *
                         </Import-Package>
                         <Spring-Context>*</Spring-Context>
                     </instructions>
+
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
     <properties>
-        <jira.version>11.0.0-m0017</jira.version>
-        <amps.version>9.1.1</amps.version>
-        <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
+        <confluence.version>10.0.0-beta3</confluence.version>
+        <amps.version>9.2.5</amps.version>
         <osgi.javaconfig.version>0.6.0</osgi.javaconfig.version>
         <spring.version>6.2.8</spring.version>
+        <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
+
 </project>
